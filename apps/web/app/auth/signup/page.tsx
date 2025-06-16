@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link'; // 假设使用React Router进行路由管理
-
+import { Button } from "@/components/ui/button"
+import SignupForm from './signupForm';
 // 定义注册页面组件
 const SignUpPage = () => {
   return (
@@ -9,8 +10,10 @@ const SignUpPage = () => {
       {/* 页面标题：居中显示、2倍字体大小、加粗、底部边距 */}
       <h1 className="text-center text-2xl font-bold mb-4">Sign Up Page</h1>
 
+      <SignupForm />
+
       {/* 登录引导区域：弹性布局、左右两端对齐、小字体 */}
-      <div className="flex justify-between text-sm">
+      <div className="flex justify-between text-sm mb-4 mt-4">
         {/* 提示文本：已有账号？ */}
         <p>Already have an account?</p>
         
@@ -19,6 +22,7 @@ const SignUpPage = () => {
           Sign In
         </Link>
       </div>
+      <Button>Sign Up</Button>
     </div>
   );
 };

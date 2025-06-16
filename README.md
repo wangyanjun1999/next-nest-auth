@@ -10,6 +10,9 @@ pnpm dlx create-turbo@latest
 
 修改后进入apps -> `pnpm run dev`
 
+# 3.prisma
+
+
 
 # Turborepo starter
 

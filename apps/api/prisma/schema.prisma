@@ -1,0 +1,61 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model comments {
+  id       Int     @id @default(autoincrement())
+  text     String?
+  authorId Int?
+  postId   Int?
+  users    users?  @relation(fields: [authorId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "authoId_from_users")
+  posts    posts?  @relation(fields: [postId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "postId_from_posts")
+}
+
+model groups {
+  id              Int               @id @default(autoincrement())
+  name            String?
+  users_to_groups users_to_groups[] @ignore
+}
+
+model posts {
+  id       Int        @id @default(autoincrement())
+  authorId Int?
+  title    String?
+  content  String?
+  comments comments[]
+  users    users?     @relation(fields: [authorId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "authorId_from_users")
+}
+
+model profile_info {
+  id       Int    @id(map: "profileInfo_pkey") @default(autoincrement())
+  metadata Json?
+  userId   Int?
+  users    users? @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "profile_to_user")
+}
+
+model users {
+  id              Int               @id @default(autoincrement())
+  name            String?
+  email           String?
+  password        String?
+  comments        comments[]
+  posts           posts[]
+  profile_info    profile_info[]
+  users_to_groups users_to_groups[] @ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model users_to_groups {
+  userId  Int?
+  groupId Int?
+  groups  groups? @relation(fields: [groupId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "constraint_from_groups")
+  users   users?  @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "constraint_from_users")
+
+  @@ignore
+}

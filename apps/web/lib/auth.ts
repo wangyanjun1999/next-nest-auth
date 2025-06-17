@@ -181,6 +181,7 @@ export async function signIn(state: FormState,formData: FormData): Promise<FormS
             id: result.id,
             name: result.name,
         },
+        accessToken: result.accessToken,
     })
 
     

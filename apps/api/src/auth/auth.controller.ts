@@ -17,6 +17,7 @@ export class AuthController {
   @Post('signin')
   login(@Request() req) {
     console.log(req.user);
-    return req.user;
+    // 如果登录成功，返回jwt
+    return this.authService.login(req.user.id, req.user?.name);
   }
 }

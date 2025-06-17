@@ -8,7 +8,7 @@ import { redirect } from "next/navigation";
         id:string;
         name: string;
     }
-    // accessToken: string;
+    accessToken: string;
     // refreshToken: string;
 }
 

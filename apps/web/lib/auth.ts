@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 import { FormState, SigninFormSchema, SignupFormSchema } from "./type";
 import { BACKEND_URL } from "./constants";
+import { createSession } from "./session";
 
 
 export async function signUp(state: FormState,formData: FormData): Promise<FormState> {
@@ -170,14 +171,26 @@ export async function signIn(state: FormState,formData: FormData): Promise<FormS
     const result = await response.json();
     console.log(`[步骤8-📊 数据] result: (原始) → ${JSON.stringify(result)} (对象) - 包含了会话或用户信息，例如认证令牌（通常是JWT）和用户ID等。`);
 
-    // [步骤8-📋 准备] 【TODO】 接下来需要为认证用户创建会话。
-    // [💡 解释] 创建会话就像你在一个俱乐部里办理了会员卡。一旦有了会员卡，你就不需要每次都出示身份证了，直接刷卡即可进入。在Web应用中，这意味着存储认证令牌（如JWT）到客户端，以便用户在后续请求中保持登录状态。
-    console.log("[步骤8-💡 解释] 此处是一个待完成的任务，用于在前端为认证用户创建用户会话。这是保持用户登录状态的关键步骤，通常涉及将服务器返回的认证令牌（如JWT）存储在客户端（例如使用HTTP Only Cookie 或 Web Storage）。");
-    console.log(`[‼️潜在问题点与风险] 会话管理需要高度重视安全性，例如使用 HTTP Only Cookies 存储敏感令牌（可以防止XSS攻击），定期刷新令牌以减少被盗用的风险，并设置合理的令牌过期时间以防止会话劫持。`);
+    // 从后端返回的user中获取id和name来创建session
+    await createSession(
+        
+        // 来自auth.service.ts  validateLocalUser 返回的user
+        {
+
+        user: {
+            id: result.id,
+            name: result.name,
+        },
+    })
+
     
     // [步骤9-🎯 结果] 登录流程结束，函数返回一个表示登录成功的消息。
     console.log("[步骤9-✅ 完成] 用户登录流程成功完成。");
-    return {
-        message: "Signin successful",
-    };
+
+
+     // 登录成功后重定向到首页
+
+    redirect('/');
+
+   
 }

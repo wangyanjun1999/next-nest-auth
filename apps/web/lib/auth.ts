@@ -190,7 +190,7 @@ export async function signIn(state: FormState,formData: FormData): Promise<FormS
 
      // 登录成功后重定向到首页
 
-    redirect('/');
+    redirect('/dashboard');
 
    
 }

@@ -44,9 +44,7 @@ export async function GET(request: NextRequest){
     // [步骤4.1-⚡ 执行] 正在调用 \`revalidatePath('/')\`。输入参数：'/' (根路径)。预测：这将告诉Next.js在下次请求根路径时重新生成页面，而不是从缓存中获取旧内容。
     console.log("[步骤4.1-⚡ 执行] 正在调用 `revalidatePath('/')`。输入参数：'/' (根路径)。预测：这将告诉Next.js在下次请求根路径时重新生成页面，而不是从缓存中获取旧内容。");
      // 注意是layout
-    revalidatePath('/');  
-    revalidatePath('/dashboard');  // 仪表板页面
-    revalidatePath('/auth');       // 认证相关页面
+ // 认证相关页面
     revalidatePath('/', 'layout')
     revalidatePath('/', 'page')
     // [步骤4.1-✅ 完成] \`revalidatePath('/')\` 调用完成。根路径的缓存已标记为过期。

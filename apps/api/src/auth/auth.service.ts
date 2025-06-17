@@ -28,7 +28,7 @@ import { verify } from 'argon2';
             }
 
             // 2. 检查密码是否正确
-            const isPasswordValid = await verify(password, user.password as string);
+            const isPasswordValid = await verify(user.password as string,   password);
             // 如果密码不正确，则抛出错误
             if (!isPasswordValid) {
                 throw new BadRequestException('Invalid password');

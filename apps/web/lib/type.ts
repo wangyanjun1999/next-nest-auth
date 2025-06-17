@@ -55,3 +55,9 @@ export const SignupFormSchema = z.object({
     //   })
       .trim(), // 去除输入前后的空格
   });
+
+
+  export const SigninFormSchema = z.object({
+    email: z.string().email(),
+    password: z.string().min(3),
+  });

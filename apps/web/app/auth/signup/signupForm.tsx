@@ -3,11 +3,11 @@ import React, { useActionState } from 'react'
 
 import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
-import { signup } from '@/lib/auth'
+import { signUp } from '@/lib/auth'
 import { FormState } from '@/lib/type'
 import { SubmitButton } from '@/components/ui/submitButton'
 export const signupForm = () => {
-  const [state, formAction] = useActionState(signup, undefined);
+  const [state, formAction] = useActionState(signUp, undefined);
   return (
     <form action={formAction}>
         <div className='flex flex-col gap-2'>

@@ -41,17 +41,17 @@ export const SignupFormSchema = z.object({
     // 密码字段验证规则
     password: z
       .string() // 限定为字符串类型
-      .min(8, { 
-        message: "Password must be at least 8 characters long." // 最小长度8，提示信息
+      .min(3, { 
+        message: "Password must be at least 3 characters long." // 最小长度8，提示信息
       })
-      .regex(/[a-zA-Z]/, { 
-        message: "Password must contain at least one letter." // 必须包含至少一个字母
-      })
-      .regex(/[0-9]/, { 
-        message: "Password must contain at least one number." // 必须包含至少一个数字
-      })
-      .regex(/[^a-zA-Z0-9]/, { 
-        message: "Password must contain at least one special character." // 必须包含至少一个特殊字符
-      })
+    //   .regex(/[a-zA-Z]/, { 
+    //     message: "Password must contain at least one letter." // 必须包含至少一个字母
+    //   })
+    //   .regex(/[0-9]/, { 
+    //     message: "Password must contain at least one number." // 必须包含至少一个数字
+    //   })
+    //   .regex(/[^a-zA-Z0-9]/, { 
+    //     message: "Password must contain at least one special character." // 必须包含至少一个特殊字符
+    //   })
       .trim(), // 去除输入前后的空格
   });

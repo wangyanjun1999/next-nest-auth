@@ -5,6 +5,8 @@ import { ValidationPipe } from '@nestjs/common';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  // 跨域
+  app.enableCors();
 
   // 全局管道
   app.useGlobalPipes(new ValidationPipe(

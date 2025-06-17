@@ -18,6 +18,10 @@ export async function signup(state: FormState,formData: FormData): Promise<FormS
     }
 
 
+    
+    console.log("🚀 ~ signup ~ validatedFields.data:", validatedFields.data)
+    console.log("🚀 ~ signup ~ BACKEND_URL:", BACKEND_URL)
+    
     // 2. 发送请求
     const response: Response = await fetch(`${BACKEND_URL}/auth/signup`, {
         method: "POST",

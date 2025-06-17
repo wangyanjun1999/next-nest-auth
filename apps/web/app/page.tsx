@@ -1,3 +1,4 @@
+"use client"	
 import Image, { type ImageProps } from "next/image";
 import { Button } from "@repo/ui/button";
 import styles from "./page.module.css";
@@ -11,10 +12,8 @@ const ThemeImage = (props: Props) => {
   const { srcLight, srcDark, ...rest } = props;
 
   return (
-    <>
-      <Image {...rest} src={srcLight} className="imgLight" />
-      <Image {...rest} src={srcDark} className="imgDark" />
-    </>
+<>
+</>
   );
 };
 
@@ -24,8 +23,8 @@ export default function Home() {
       <main className={styles.main}>
         <ThemeImage
           className={styles.logo}
-          srcLight="turborepo-dark.svg"
-          srcDark="turborepo-light.svg"
+          srcLight="./turborepo-dark.svg"
+          srcDark="./turborepo-light.svg"
           alt="Turborepo logo"
           width={180}
           height={38}
@@ -49,8 +48,9 @@ export default function Home() {
               className={styles.logo}
               src="/vercel.svg"
               alt="Vercel logomark"
-              width={20}
-              height={20}
+              width={500}
+              height={0}  // 设置为0让高度自动计算
+              style={{ height: 'auto', width: '100%' }}  // 使用style实现自适应高度
             />
             Deploy now
           </a>

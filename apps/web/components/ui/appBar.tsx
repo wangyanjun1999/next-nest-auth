@@ -7,7 +7,7 @@ const AppBar = () => {
     <div className='flex gap-3 bg-gradient-to-br from-blue-400 to-cyan-400 p-2 shadow'>
 <Link href="/"> Home</Link>
 <Link href="/dashboard"> Dashboard</Link>
-
+<Link href="/profile"> Profile</Link>
 
 <SignInButton />
 

@@ -23,7 +23,6 @@ const SignUpPage = () => {
           Sign In
         </Link>
       </div>
-        <SubmitButton>Sign Up</SubmitButton>
     </div>
   );
 };

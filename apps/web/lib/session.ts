@@ -16,6 +16,9 @@ import { redirect } from "next/navigation";
 // 创建session
 const SECRET_KEY = process.env.SESSION_SECRET_KEY
 const encoderKey = new TextEncoder().encode(SECRET_KEY)
+
+
+
 export async function createSession(payload: Session){
     const expiredAt = new Date(Date.now() + 7 * 24 * 60 *60 *1000)
     console.log("🚀 ~ createSession ~ expiredAt:", expiredAt)
@@ -30,7 +33,7 @@ export async function createSession(payload: Session){
     cookieStore.set('session', session, {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
-        maxAge: expiredAt.getTime(),
+        maxAge: 7 * 24 * 60 * 6,
         sameSite: 'lax', // 接收根域名下的请求
         path: '/', // 对所有路径都有效
     })
@@ -40,7 +43,7 @@ export async function createSession(payload: Session){
 
 
 
-    export async function getSession(): Promise<Session | null> {
+export async function getSession(): Promise<Session | null> {
         const cookieStore = await cookies()
         const session = cookieStore.get('session') // 和set的name一致
         if (!session) {
@@ -67,3 +70,12 @@ export async function createSession(payload: Session){
         }
     }   
 
+
+export async function deleteSession(){
+        const cookieStore = await cookies()
+        cookieStore.delete('session')
+
+    
+
+
+    }

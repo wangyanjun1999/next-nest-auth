@@ -1,12 +1,14 @@
-
 import Link from 'next/link'
 import React from 'react'
-import { getSession } from '@/lib/session'
+import { getSession, Session     } from '@/lib/session'
 
-const SignInButton = async () => {
-    const session  = await getSession(); 
+        const SignInButton =async () => {
+            const session = await getSession()    
+
   return (
     <div className='flex gap-2 items-center ml-auto' >
+    
+    
     {!session || !session.user ?(
         
         <>
@@ -16,7 +18,18 @@ const SignInButton = async () => {
     ):(
         <>
                 <p>{session.user.name}</p>
-                <Link href="#">Sign out</Link>
+                {/* <a href="/api/auth/signout">Sign out</a> */}
+
+         {/* 🔧 核心修复：使用表单提交而不是 Link 组件 */}
+         <form action="/api/auth/signout" method="GET" className="inline">
+                        <button 
+                            type="submit" 
+                            className="text-blue-600 hover:text-blue-800 underline bg-transparent border-none cursor-pointer"
+                        >
+                            Sign out
+                        </button>
+                    </form>
+
         </>
     )}
     
